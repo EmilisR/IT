@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoSalePage xmlns="http://github.com/EmilisR">
+  <Manufacturers>
+    <Manufacturer id="id1">
+      <Name>Name1</Name>
+    </Manufacturer>
+    <Manufacturer id="id2">
+      <Name>Name2</Name>
+    </Manufacturer>
+    <Manufacturer id="id3">
+      <Name>Name3</Name>
+    </Manufacturer>
+  </Manufacturers>
+  <Vehicles>
+    <WaterTransport material="Wood Glass Aluminium " color="color1" class="Car">
+      <Model>
+        <VehicleManufacturer ref="ref1" />
+        <Name>Name1</Name>
+        <BodyType>Sedan</BodyType>
+        <ManufactureDate>2015-02</ManufactureDate>
+      </Model>
+      <Engine vin="12345678912345678">
+        <FuelType>Diesel Petrol Electricity </FuelType>
+        <Volume unit="unit1">1</Volume>
+        <Power unit="unit1">0</Power>
+        <FuelConsumption unit="unit1">
+          <Medium>0</Medium>
+        </FuelConsumption>
+      </Engine>
+      <MainFeatures>text<Mileage unit="unit1">0</Mileage><NumberOfDoors>2/3</NumberOfDoors><PowerSteeringWheels>Front</PowerSteeringWheels><Gearbox>Automatic</Gearbox><SteeringWheelPosition>Left</SteeringWheelPosition><DiametersOfRims>R15</DiametersOfRims><Weight unit="unit1">0</Weight><NumberOfSeats>2</NumberOfSeats></MainFeatures>
+      <Price currency="EUR">0</Price>
+    </WaterTransport>
+  </Vehicles>
+</AutoSalePage>

@@ -1,0 +1,352 @@
+﻿<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace='http://github.com/EmilisR' xmlns:p ='http://github.com/EmilisR'>
+  <!--Root element-->
+  <xs:annotation>
+    <xs:documentation>
+      XML schema for AutoSalePage
+    </xs:documentation>
+  </xs:annotation>
+  <!--Root element-->
+  
+  <!--Root element-->
+  <xs:element name="AutoSalePage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Manufacturers" type="p:ManufacturersType" minOccurs="1"/>
+        <xs:element name="Vehicles" type="p:VehiclesType" minOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="ManufacturerKey">
+      <xs:selector xpath="p:Manufacturers/p:Manufacturer"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <xs:keyref name="ReferenceToManufacturer" refer="p:ManufacturerKey">
+      <xs:selector xpath="p:Vehicles/p:Vehicle/p:Model/p:VehicleManufacturer"/>
+      <xs:field xpath="@ref"/>
+    </xs:keyref>
+  </xs:element>
+  <!--Root element-->
+
+  <!--Complex type-->
+  <xs:complexType name="ManufacturersType">
+    <xs:sequence>
+      <xs:element name="Manufacturer" type="p:ManufacturerType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ManufacturerType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Name" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="p:ManufacturerAttributes" />
+  </xs:complexType>
+  <xs:complexType name="VehiclesType">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="WaterTransport" type="p:WaterTransportVehicleType" minOccurs="0"/>
+        <xs:element name="Vehicle" type="p:VehicleType" minOccurs="0"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VehicleType">
+    <xs:sequence>
+      <xs:element name="Model" type="p:ModelType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Engine" type="p:EngineType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="MainFeatures" type="p:MainFeaturesType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Price" type="p:PriceWithCurrencyRestrict" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="p:VehicleAttributes" />
+  </xs:complexType>
+  <xs:complexType name="ModelType">
+    <xs:sequence>
+      <xs:element name="VehicleManufacturer" type="p:VehicleManufacturerType" minOccurs="1" maxOccurs="1"/>
+      <xs:element type="xs:string" name="Name" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="BodyType" type="p:BodyType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="ManufactureDate" type="p:DateType" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EngineType">
+    <xs:sequence>
+      <xs:element name="FuelType" type="p:FuelTypeList" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Volume" type="p:VolumeType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Power" type="p:PowerType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="FuelConsumption" type="p:FuelConsumptionType" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="p:EngineAttributes" />
+  </xs:complexType>
+  <xs:complexType name="FuelConsumptionType">
+    <xs:sequence>
+      <xs:element type="p:DecimalPositiveType" name="InTheCity" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="p:DecimalPositiveType" name="OutOfTown" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="p:DecimalPositiveType" name="Medium" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="p:UnitAttributes" />
+  </xs:complexType>
+  <!--Complex type-->
+  
+  
+  <!--Complex type simple content-->
+  <xs:complexType name="PriceWithCurrency">
+    <xs:simpleContent>
+      <xs:extension base="p:DecimalPositiveType">
+        <xs:attributeGroup ref="p:PriceAttributes" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="PriceWithCurrencyRestrict">
+    <xs:simpleContent>
+      <xs:restriction base="p:PriceWithCurrency">
+        <xs:fractionDigits value="2"/>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="VolumeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:short">
+        <xs:attributeGroup ref="p:UnitAttributes" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="PowerType">
+    <xs:simpleContent>
+      <xs:extension base="p:IntegerPositiveType">
+        <xs:attributeGroup ref="p:UnitAttributes" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType> 
+  <xs:complexType name="MileageType">
+    <xs:simpleContent>
+      <xs:extension base="p:IntegerPositiveType">
+        <xs:attributeGroup ref="p:UnitAttributes" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="DiametersOfRimsType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="WeightType">
+    <xs:simpleContent>
+      <xs:extension base="p:IntegerPositiveType">
+        <xs:attributeGroup ref="p:UnitAttributes" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="FloorsType">
+    <xs:simpleContent>
+      <xs:extension base="p:IntegerPositiveType">
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="DiametersOfRimsTypeRestrict">
+    <xs:simpleContent>
+      <xs:restriction base="p:DiametersOfRimsType">
+        <xs:pattern value="R([4-9]|[1-3][0-9]|4[0-2])+([.][5])?"/>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <!--Complex type simple content-->
+
+  <!--Complex type complex content-->
+  <xs:complexType name="WaterTransportVehicleType">
+    <xs:complexContent>
+      <xs:extension base="p:WaterTransportType">
+        <xs:attributeGroup ref="p:WaterTransportAttributes" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="WaterTransportType">
+    <xs:complexContent>
+      <xs:restriction base="p:VehicleType">
+        <xs:sequence>
+          <xs:element name="Model" type="p:ModelType" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="Engine" type="p:WaterTransportEngineType" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="MainFeatures" type="p:MainFeaturesType" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="Price" type="p:PriceWithCurrencyRestrict" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="WaterTransportFuelConsumptionType">
+    <xs:complexContent>
+      <xs:restriction base="p:FuelConsumptionType">
+          <xs:sequence>
+            <xs:element type="p:DecimalPositiveType" name="Medium" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="WaterTransportEngineType">
+    <xs:complexContent>
+      <xs:restriction base="p:EngineType">
+        <xs:sequence>
+          <xs:element name="FuelType" type="p:FuelTypeList" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="Volume" type="p:VolumeType" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="Power" type="p:PowerType" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="FuelConsumption" type="p:WaterTransportFuelConsumptionType" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="p:EngineAttributes" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <!--Complex type complex content-->
+
+  <!--Complex type mixed content-->
+  <xs:complexType name="MainFeaturesType" mixed="true">
+    <xs:choice>
+      <xs:sequence>
+        <xs:element name="Mileage" type="p:MileageType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="NumberOfDoors" type="p:NumberOfDoorsType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="PowerSteeringWheels" type="p:PowerSteeringWheelsType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Gearbox" type="p:GearboxType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="SteeringWheelPosition" type="p:SteeringWheelPositionType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="DiametersOfRims" type="p:DiametersOfRimsTypeRestrict" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Weight" type="p:WeightType"  minOccurs="1" maxOccurs="1"/>
+        <xs:element name="NumberOfSeats" type="p:NumberOfSeatsType" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:sequence>
+        <xs:element name="Gearbox" type="p:GearboxType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Weight" type="p:WeightType"  minOccurs="1" maxOccurs="1"/>
+        <xs:element name="NumberOfSeats" type="p:NumberOfSeatsType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Floors" type="p:FloorsType" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:choice>
+  </xs:complexType>
+  <!--Complex type mixed content-->
+  
+  <!--Complex Ref types-->
+  <xs:complexType name="VehicleManufacturerType">
+    <xs:attributeGroup ref="p:VehicleManufacturerAttributes" />
+  </xs:complexType>
+  <!--Complex Ref types-->
+
+  <!--Attribute Group-->
+  <xs:attributeGroup name="ManufacturerAttributes">
+    <xs:attribute type="xs:string" name="id" use="required"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="VehicleManufacturerAttributes">
+    <xs:attribute type="xs:string" name="ref" use="required"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="VehicleAttributes">
+    <xs:attribute type="xs:string" name="color" use="required"/>
+    <xs:attribute type="p:VehicleClass" name="class" use="required"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="EngineAttributes">
+    <xs:attribute name="vin" type="p:VinType" use="required"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="PriceAttributes">
+    <xs:attribute name="currency" type="p:CurrencyType" use="required"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="WaterTransportAttributes">
+    <xs:attribute name="material" type="p:MaterialList" use="required"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="UnitAttributes">
+    <xs:attribute type="xs:string" name="unit" use="required"/>
+  </xs:attributeGroup>
+  <!--Attribute Group-->
+
+  <!--Simple types-->
+  <xs:simpleType name="DecimalPositiveType">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="IntegerPositiveType">
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="VinType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z0-9]{17}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="GearboxType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Automatic"/>
+      <xs:enumeration value="Manual"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MaterialType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Wood"/>
+      <xs:enumeration value="Glass"/>
+      <xs:enumeration value="Aluminium"/>
+      <xs:enumeration value="Plastic"/>
+      <xs:enumeration value="Iron"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DateType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(19|20)[0-9]{2}-(([0]{1}[1-9]{1})|10|11|12)"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumberOfDoorsType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="2/3"/>
+      <xs:enumeration value="4/5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CurrencyType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EUR"/>
+      <xs:enumeration value="USD"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PowerSteeringWheelsType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Front"/>
+      <xs:enumeration value="Rear"/>
+      <xs:enumeration value="4x4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="BodyType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Sedan"/>
+      <xs:enumeration value="Hatchback"/>
+      <xs:enumeration value="Wagon"/>
+      <xs:enumeration value="Monotone"/>
+      <xs:enumeration value="SUV Coupe"/>
+      <xs:enumeration value="Commercial"/>
+      <xs:enumeration value="Convertible"/>
+      <xs:enumeration value="Limousine"/>
+      <xs:enumeration value="Pickup"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="FuelType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Diesel"/>
+      <xs:enumeration value="Petrol"/>
+      <xs:enumeration value="Electricity"/>
+      <xs:enumeration value="Gas"/>
+      <xs:enumeration value="Bioethanol"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="FuelTypeList">
+    <xs:list itemType='p:FuelType'/>
+  </xs:simpleType>
+  <xs:simpleType name="MaterialList">
+    <xs:list itemType='p:MaterialType'/>
+  </xs:simpleType>
+  <xs:simpleType name="SteeringWheelPositionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Left"/>
+      <xs:enumeration value="Right"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumberOfSeatsType">
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="2"/>
+      <xs:maxInclusive value="9"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="VehicleClass">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Car"/>
+      <xs:enumeration value="Bus"/>
+      <xs:enumeration value="Motorcycle"/>
+      <xs:enumeration value="WaterTransport"/>
+      <xs:enumeration value="Right"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--Simple types-->
+</xs:schema>
