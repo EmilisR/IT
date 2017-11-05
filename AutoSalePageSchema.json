@@ -1,0 +1,385 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "definitions": {
+    "Manufacturers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ManufacturerType"
+      }
+    },
+    "Vehicles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/VehicleType"
+      }
+    },
+    "ManufacturerType": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Name",
+        "Id"
+      ],
+      "additionalProperties": false
+    },
+    "VehicleType": {
+      "type": "object",
+      "properties": {
+        "Model": {
+          "$ref": "#/definitions/ModelType"
+        },
+        "Engine": {
+          "$ref": "#/definitions/EngineType"
+        },
+        "MainFeatures": {
+          "$ref": "#/definitions/MainFeaturesType"
+        },
+        "Price": {
+          "$ref": "#/definitions/PriceType"
+        },
+        "Color": {
+          "$ref": "#/definitions/ColorType"
+        },
+        "IsNew": {
+          "$ref": "#/definitions/IsNewType"
+        },
+        "Class": {
+          "$ref": "#/definitions/ClassType"
+        }
+      },
+      "required": [
+        "Model",
+        "Engine",
+        "MainFeatures",
+        "Price"
+      ],
+      "additionalProperties": false
+    },
+    "ModelType": {
+      "type": "object",
+      "properties": {
+        "VehicleManufacturer": {
+          "type": "string",
+          "$ref": "#/definitions/VehicleManufacturerType"
+        },
+        "Name": {
+          "$ref": "#/definitions/NameType"
+        },
+        "BodyType": {
+          "$ref": "#/definitions/BodyTypeType"
+        },
+        "ManufactureDate": {
+          "$ref": "#/definitions/ManufactureDateType"
+        }
+      },
+      "required": [
+        "VehicleManufacturer",
+        "Name",
+        "BodyType",
+        "ManufactureDate"
+      ],
+      "additionalProperties": false
+    },
+    "EngineType": {
+      "type": "object",
+      "properties": {
+        "Vin": {
+          "$ref": "#/definitions/VinType"
+        },
+        "FuelConsumption": {
+          "$ref": "#/definitions/FuelConsumptionType"
+        },
+        "Power": {
+          "$ref": "#/definitions/PowerType"
+        },
+        "Volume": {
+          "$ref": "#/definitions/VolumeType"
+        },
+        "FuelType": {
+          "$ref": "#/definitions/FuelTypeType"
+        }
+      },
+      "required": [
+        "FuelType",
+        "Volume",
+        "Power",
+        "FuelConsumption",
+        "Vin"
+      ],
+      "additionalProperties": false
+    },
+    "MainFeaturesType": {
+      "type": "object",
+      "properties": {
+        "Mileage": {
+          "$ref": "#/definitions/NumberUnitType"
+        },
+        "NumberOfDoors": {
+          "$ref": "#/definitions/NumberOfDoorsType"
+        },
+        "PowerSteeringWheels": {
+          "$ref": "#/definitions/PowerSteeringWheelsType"
+        },
+        "Gearbox": {
+          "$ref": "#/definitions/GearboxType"
+        },
+        "SteeringWheelPosition": {
+          "$ref": "#/definitions/SteeringWheelPositionType"
+        },
+        "DiametersOfRims": {
+          "$ref": "#/definitions/DiametersOfRimsType"
+        },
+        "Weight": {
+          "$ref": "#/definitions/NumberUnitType"
+        },
+        "NumberOfSeats": {
+          "$ref": "#/definitions/NumberOfSeatsType"
+        }
+      },
+      "required": [
+        "DiametersOfRims",
+        "Gearbox",
+        "Mileage",
+        "NumberOfDoors"
+      ],
+      "additionalProperties": false
+    },
+    "PriceType": {
+      "type": "object",
+      "properties": {
+        "Currency": {
+          "$ref": "#/definitions/CurrencyType"
+        },
+        "Amount": {
+          "$ref": "#/definitions/AmountType"
+        }
+      },
+      "required": [
+        "Currency",
+        "Amount"
+      ],
+      "additionalProperties": false
+    },
+    "ColorType": {
+      "type": "string",
+      "enum": [
+        "yellow",
+        "green",
+        "blue",
+        "red",
+        "black",
+        "white",
+        "gray",
+        "metallic",
+        "golden",
+        "orange",
+        "brown"
+      ]
+    },
+    "IsNewType": {
+      "type": "boolean"
+    },
+    "ClassType": {
+      "type": "string",
+      "enum": [
+        "car",
+        "boat",
+        "motorcycle",
+        "truck"
+      ]
+    },
+    "CurrencyType": {
+      "type": "string",
+      "enum": [
+        "Eur",
+        "Usd"
+      ]
+    },
+    "AmountType": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "[0-9]+[.][0-9]{1,2}$"
+        },
+        {
+          "type": "integer",
+          "minimum": 0
+        }
+      ]
+    },
+    "VehicleManufacturerType": {
+      "type": "string"
+    },
+    "NameType": {
+      "type": "string"
+    },
+    "BodyTypeType": {
+      "type": "string",
+      "enum": [
+        "Sedan",
+        "Hatchback",
+        "Wagon",
+        "Monotone",
+        "SUV Coupe",
+        "Commercial",
+        "Convertible",
+        "Limousine",
+        "Pickup"
+      ]
+    },
+    "ManufactureDateType": {
+      "type": "string",
+      "format": "date"
+    },
+    "FuelTypeType": {
+      "type": "string",
+      "enum": [
+        "Gas",
+        "Petrol",
+        "Diesel",
+        "Electric"
+      ]
+    },
+    "VolumeType": {
+      "$ref": "#/definitions/NumberUnitType"
+    },
+    "PowerType": {
+      "$ref": "#/definitions/NumberUnitType"
+    },
+    "FuelConsumptionType": {
+      "type": "object",
+      "properties": {
+        "InTheCity": {
+          "$ref": "#/definitions/AmountType"
+        },
+        "OutOfTown": {
+          "$ref": "#/definitions/AmountType"
+        },
+        "Medium": {
+          "$ref": "#/definitions/AmountType"
+        },
+        "Unit": {
+          "$ref": "#/definitions/UnitType"
+        }
+      },
+      "required": [
+        "Unit"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "InTheCity"
+          ]
+        },
+        {
+          "required": [
+            "OutOfTown"
+          ]
+        },
+        {
+          "required": [
+            "Medium"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "VinType": {
+      "allOf": [
+        {
+          "type": "string"
+        },
+        {
+          "pattern": "[A-Z0-9]{17}"
+        },
+        {
+          "maxLength": 17
+        }
+      ]
+    },
+    "UnitType": {
+      "type": "string"
+    },
+    "NumberUnitType": {
+      "type": "object",
+      "properties": {
+        "Unit": {
+          "$ref": "#/definitions/UnitType"
+        },
+        "Amount": {
+          "$ref": "#/definitions/AmountType"
+        }
+      },
+      "required": [
+        "Amount",
+        "Unit"
+      ],
+      "additionalProperties": false
+    },
+    "NumberOfDoorsType": {
+      "type": "string",
+      "enum": [
+        "2/3",
+        "4/5"
+      ]
+    },
+    "PowerSteeringWheelsType": {
+      "type": "string",
+      "enum": [
+        "Front",
+        "Rear",
+        "4x4"
+      ]
+    },
+    "GearboxType": {
+      "type": "string",
+      "enum": [
+        "Manual",
+        "Automatic"
+      ]
+    },
+    "SteeringWheelPositionType": {
+      "type": "string",
+      "enum": [
+        "Left",
+        "Right"
+      ]
+    },
+    "DiametersOfRimsType": {
+      "type": "string",
+      "pattern": "^R([4-9]|[1-3][0-9]|4[0-2])([.][5])?$"
+    },
+    "NumberOfSeatsType": {
+      "type": "number",
+      "minimum": 2,
+      "maximum": 9
+    }
+  },
+  "properties": {
+    "AutoSalePage": {
+      "type": "object",
+      "properties": {
+        "Manufacturers": {
+          "$ref": "#/definitions/Manufacturers"
+        },
+        "Vehicles": {
+          "$ref": "#/definitions/Vehicles"
+        }
+      },
+      "required": [
+        "Manufacturers",
+        "Vehicles"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "title": "JSON schema for AutoSalePage",
+  "type": "object"
+}

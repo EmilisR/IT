@@ -1,0 +1,116 @@
+﻿{
+  "AutoSalePage": {
+    "Manufacturers": [
+      {
+        "Name": "Audi",
+        "Id": "m01"
+      },
+      {
+        "Name": "BMW",
+        "Id": "m02"
+      },
+      {
+        "Name": "Mercedes",
+        "Id": "m01"
+      }
+    ],
+    "Vehicles": [
+      {
+        "Model": {
+          "VehicleManufacturer": "m01",
+          "Name": "A6",
+          "BodyType": "Sedan",
+          "ManufactureDate": "2017-10-01"
+        },
+        "Engine": {
+          "FuelConsumption": {
+            "InTheCity": "9.8",
+            "OutOfTown": 6,
+            "Medium": "7.4",
+            "Unit": "l/100km"
+          },
+          "FuelType": "Petrol",
+          "Power": {
+            "Unit": "kW",
+            "Amount": 245
+          },
+          "Vin": "12345678901234567",
+          "Volume": {
+            "Unit": "cm3",
+            "Amount": 2996
+          }
+        },
+        "MainFeatures": {
+          "Mileage": {
+            "Unit": "km",
+            "Amount": 3600
+          },
+          "NumberOfDoors": "4/5",
+          "PowerSteeringWheels": "4x4",
+          "Gearbox": "Automatic",
+          "SteeringWheelPosition": "Left",
+          "DiametersOfRims": "R17",
+          "Weight": {
+            "Unit": "kg",
+            "Amount": 1825
+          },
+          "NumberOfSeats": 5
+        },
+        "Price": {
+          "Currency": "Eur",
+          "Amount": "36990.11"
+        },
+        "Color": "gray",
+        "IsNew": false,
+        "Class": "car"
+      },
+      {
+        "Model": {
+          "VehicleManufacturer": "1",
+          "Name": "530",
+          "BodyType": "Wagon",
+          "ManufactureDate": "2004-10-01"
+        },
+        "Engine": {
+          "FuelType": "Diesel",
+          "Volume": {
+            "Unit": "cm3",
+            "Amount": 3000
+          },
+          "Power": {
+            "Unit": "kW",
+            "Amount": 160
+          },
+          "FuelConsumption": {
+            "Medium": 8,
+            "Unit": "l/100km"
+          },
+          "Vin": "DSA6FD64E46955D11"
+        },
+        "MainFeatures": {
+          "Mileage": {
+            "Unit": "km",
+            "Amount": 335000
+          },
+          "NumberOfDoors": "4/5",
+          "PowerSteeringWheels": "Rear",
+          "Gearbox": "Automatic",
+          "SteeringWheelPosition": "Left",
+          "DiametersOfRims": "R17",
+          "Weight": {
+            "Unit": "kg",
+            "Amount": 1595
+          },
+          "NumberOfSeats": 5
+        },
+        "Price": {
+          "Currency": "Eur",
+          "Amount": "4500.02"
+        },
+        "Color": "gray",
+        "IsNew": false,
+        "Class": "car"
+      }
+    ]
+  }
+}
