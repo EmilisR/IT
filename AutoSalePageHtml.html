@@ -1,0 +1,179 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Auto Sale Page</title>
+    <link rel="stylesheet" type="text/css" href="AutoSalePageStyleSheet.css" />
+    <script src="AutoSalePageScript.js"></script>
+</head>
+<body>
+    <header class="header">
+            <a href="http://autoplius.lt">
+                <img class="logo" alt="logo" src="https://autoplius-static.dgn.lt/static/images/svg/autoplius-logo.svg" />
+            </a>
+        <h1>Auto Sale Page</h1>
+        <h2>Add new ad</h2>
+        <p>Here you can fill in the form to submit for car ad and sell your car.</p>
+    </header>
+    <nav>
+        <a href="#mainInfo">Main info</a>
+        <a href="#otherFeatures">Other features</a>
+        <a href="#description">Description</a>
+        <a href="#contact">Contact info</a>
+        <a href="#submit">Submit</a>
+    </nav>
+    <article>
+        <form name="forma" method="post">
+            <div id="mainInfo" class="section">
+                <h3>Main info</h3>
+                <div class="label">
+                    Choose vehicle type:
+                </div>
+                <select>
+                    <option>Audi</option>
+                    <option>BMW</option>
+                    <option>Mercedes</option>
+                    <option>Toyota</option>
+                    <option>Lexus</option>
+                    <option>Honda</option>
+                    <option>Volkswagen</option>
+                    <option>Opel</option>
+                    <option>Subaru</option>
+                </select>
+                <br>
+                <div class="label">
+                    Model
+                </div>
+                <input type="text" name="model">
+                <br>
+                <div class="label">
+                    Body type:
+                </div>
+                <select>
+                    <option>Hatchback</option>
+                    <option>Sedan</option>
+                    <option>Universal</option>
+                    <option>Cabriolet</option>
+                    <option>Pickup</option>
+                </select>
+                <br>
+                <div class="label">
+                    *Manufacture date:
+                </div>
+                <input type="month" required />
+                <br>
+                <div class="label">
+                    *VIN number:
+                </div>
+                <input type="text" pattern="[A-Z0-9]{17}" required />
+                <br>
+                <table class="fuelTable">
+                    <tr>
+                        <td rowspan="2">Fuel type</td>
+                        <td colspan="3">Consumption (l/100km)</td>
+                    </tr>
+                    <tr>
+                        <td>In the city</td>
+                        <td>Out of town</td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td id="leftAlign">
+                            <label>
+                                <input type="radio" name="fuelType" value="Diesel"> Diesel
+                            </label>
+                            <br>
+                            <label>
+                                <input type="radio" name="fuelType" value="Gas"> Gas
+                            </label>
+                            <br>
+                            <label>
+                                <input type="radio" name="fuelType" value="Gas/Electricity"> Gas/Electricity
+                            </label>
+                        </td>
+                        <td><input type="number" step="0.1" min="0" /></td>
+                        <td><input type="number" step="0.1" min="0" /></td>
+                        <td><input type="number" step="0.1" min="0" /></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="otherFeatures" class="section">
+                <h3>Other features</h3>
+                <input type="checkbox" />
+                <div class="label">
+                    Navigation
+                </div>
+                <br />
+                <input type="checkbox" />
+                <div class="label">
+                    Multimedia
+                </div>
+                <br />
+                <input type="checkbox" />
+                <div class="label">
+                    Leather inside
+                </div>
+                <br />
+                <input type="checkbox" />
+                <div class="label">
+                    Electrical windows
+                </div>
+                <br />
+                <input type="checkbox" />
+                <div class="label">
+                    Autopilot
+                </div>
+                <br />
+                <input type="checkbox" />
+                <div class="label">
+                    Warranty
+                </div>
+                <br />
+                <input type="checkbox" />
+                <div class="label">
+                    Autonomic heating
+                </div>
+                <br />
+                <input type="checkbox" />
+                <div class="label">
+                    SRS air bags
+                </div>
+                <br />
+                <input type="checkbox" />
+                <div class="label">
+                    Service book
+                </div>
+                <br />
+                <input type="checkbox" />
+                <div class="label">
+                    Heating seats
+                </div>
+                <br />
+            </div>
+            <div id="description" class="section">
+                <h3>Description</h3>
+                <ul>
+                    <li>A detailed comment will increase customer interest in your ad.</li>
+                    <li>The more informative an advertisement, the fewer questions a customer will have.</li>
+                    <li>Creatively described ads can be advertised on Autoplius.lt facebook account.</li>
+                </ul>
+                <textarea class="description"></textarea>
+            </div>
+            <div id="contact" class="section">
+                <h3>Contact info</h3>
+                <div class="label">Name:</div>
+                <input type="text" name="text"><br>
+                <div class="label">*Email:</div>
+                <input type="email" name="email" required><br>
+                <div class="label">Tel:</div>
+                <input type="tel" name="tel"><br>
+            </div>
+
+            <input type="submit" value="Submit" class="submitButton">
+        </form>
+    </article>
+</body>
+</html>
+

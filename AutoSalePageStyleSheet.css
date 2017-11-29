@@ -1,0 +1,73 @@
+﻿body {
+    font-family: Helvetica;
+    margin:16px;
+}
+
+header > h1 {
+    text-align: center;
+}
+
+.label, td > p {
+    display: inline;
+}
+
+.description {
+    width: 30%;
+    height: 10em;
+}
+
+.section {
+    border: solid;
+    margin-bottom: 1em;
+    background-color: floralwhite;
+}
+
+    .section > h3, p, select, input, textarea {
+        margin: 1em 1em 1em 1em;
+    }
+
+.header{
+    text-align:center;
+}
+
+.submitButton {
+    width: 16em;
+    height: 4em;
+    display: block;
+}
+
+article {
+    display: inline-grid;
+}
+
+ol {
+    display: inline-grid;
+}
+
+.fuelTable {
+    border-style: groove;
+    text-align: center;
+    margin: 1em 1em 1em 1em;
+}
+
+
+.label {
+    display: inline-block;
+    margin: 1em 1em 1em 1em;
+    min-width: 15%;
+    max-width: 15%;
+}
+
+td#leftAlign {
+    text-align: start;
+}
+
+@media screen and (max-width: 840px) {
+    input[step="0.1"] {
+        width: 40%;
+    }
+
+    td#leftAlign {
+        min-width: 153px;
+    }
+}
