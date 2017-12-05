@@ -1,0 +1,60 @@
+.removed {
+    text-decoration: line-through;
+}
+
+.up {
+    margin: 0px 0px auto 0px !important;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.game-list {
+    margin-top: 3%;
+}
+
+.form-group > small {
+    display: none;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    position: relative;
+    padding: 5px 10px;
+}
+
+tr.strikeout td:before {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    border-bottom: 1px solid #111;
+    width: 100%;
+}
+
+tr.game td:nth-child(1) {
+    width: 106px;
+}
+
+.delete-game {
+    color: #007aff;
+    float: right;
+    cursor: pointer;
+    font-weight: 800;
+}
+
+thead {
+    background-color: #ff8080;
+    font-size: larger;
+    font-weight: 700;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #4d79ff  !important;
+}
